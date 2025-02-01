@@ -1,47 +1,40 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import { auth } from "../firebase/config"
-// import { signOut } from "firebase/auth"
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { logOutUser } from "../store/authSlice";
 
-export const Navbar = () => {
-  //   const dispatch = useDispatch()
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
-  //   const handleLogout = async () => {
-  //     try {
-  //       await signOut(auth)
-  //       dispatch(())
-  //     } catch (error) {
-  //       console.error("Error signing out: ", error)
-  //     }
-  //   }
+  const handleLogout = async () => {
+    await signOut(auth);
+    dispatch(logOutUser());
+  };
 
   return (
-    <nav className="navbar">
+    <nav>
       <Link to="/" className="navbar-brand">
         Blogify
       </Link>
-      <div className="navbar-links">
-        {isAuthenticated ? (
-          <>
-            <Link to="/create" className="navbar-link">
-              Create Blog
-            </Link>
-            <button  className="navbar-link">
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" className="navbar-link">
-              Login
-            </Link>
-            <Link to="/signup" className="navbar-link">
-              Signup
-            </Link>
-          </>
-        )}
-      </div>
+      <Link to="/">Home</Link>
+      <Link to="/blogs">Blogs</Link>
+      <Link to="/about">About</Link>
+      <Link to="/contact">Contact</Link>
+      {user ? (
+        <>
+          <Link to="/create">Create Blog</Link>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Signup</Link>
+        </>
+      )}
     </nav>
   );
 };
+
+export default Navbar;
