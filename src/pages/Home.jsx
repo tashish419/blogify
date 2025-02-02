@@ -11,13 +11,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      if (posts.length === 0) { // Fetch only if posts are empty
+      if (posts.length === 0) { 
         const querySnapshot = await getDocs(collection(db, "posts"));
         const fetchedPosts = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        dispatch(setBlogs(fetchedPosts)); // Store posts in Redux
+        dispatch(setBlogs(fetchedPosts)); 
       }
     };
 

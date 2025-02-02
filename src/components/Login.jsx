@@ -60,7 +60,7 @@ const Login = () => {
         </form>
         {error && <p className="error-message">{error}</p>}
         <div className="auth-form-links">
-          <Link to="/signup">Don't have an account? Sign up</Link>
+          <Link to="/signup">Don&apos;t have an account? Sign up</Link>
         </div>
       </div>
     </div>
