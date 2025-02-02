@@ -3,24 +3,25 @@ import { createSlice } from "@reduxjs/toolkit";
 const blogSlice = createSlice({
   name: "blog",
   initialState: {
-    blogs: [],
+    posts: [],
     loading: false,
     error: null,
   },
   reducers: {
     setBlogs: (state, action) => {
-      state.blogs = action.payload;
+      state.posts = action.payload;
     },
     addBlog: (state, action) => {
-      state.blogs.push(action.payload);
+      state.posts.push(action.payload);
     },
     updateBlog: (state, action) => {
-      const index = state.blogs.findIndex((b) => b.id === action.payload.id);
-      if (index !== -1) state.blogs[index] = action.payload;
+      const index = state.posts.findIndex((b) => b.id === action.payload.id);
+      if (index !== -1) state.posts[index] = action.payload;
     },
     deleteBlog: (state, action) => {
-      state.blogs = state.blogs.filter((b) => b.id !== action.payload);
+      state.posts = state.posts.filter((b) => b.id !== action.payload);
     },
+
   },
 });
 
