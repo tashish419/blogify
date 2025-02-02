@@ -14,25 +14,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
+    <nav className="navbar">
       <Link to="/" className="navbar-brand">
         Blogify
       </Link>
-      <Link to="/">Home</Link>
-      <Link to="/blogs">Blogs</Link>
-      <Link to="/about">About</Link>
-      <Link to="/contact">Contact</Link>
-      {user ? (
-        <>
-          <Link to="/create">Create Blog</Link>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
-        </>
-      )}
+      <div className="navbar-links">
+        {user ? (
+          <>
+            <Link to="/create" className="navbar-link">Create Blog</Link>
+            <button onClick={handleLogout} className="navbar-link">Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="navbar-link">Login</Link>
+            <Link to="/signup" className="navbar-link">Signup</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 };
