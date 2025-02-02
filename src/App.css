@@ -188,3 +188,40 @@ body {
   text-decoration: underline;
 }
 
+/* Create/Edit Blog Styles */
+.create-blog,
+.edit-blog {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.create-blog h2,
+.edit-blog h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-blog input,
+.create-blog textarea,
+.edit-blog input,
+.edit-blog textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-blog button,
+.edit-blog button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.current-cover {
+  max-width: 100%;
+  margin-bottom: 10px;
+}

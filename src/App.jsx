@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import SingleBlog from "./pages/SingleBlog";
 import Home from "./pages/Home";
 import { useDispatch } from "react-redux";
+import CreateBlog from "./pages/CreateBlog";
+import EditBlog from "./pages/EditBlog";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,8 +38,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/blog/:id" element={<SingleBlog />} />
-          {/* <Route path="/create" element={<CreateBlog />} /> */}
-          {/* <Route path="/edit/:id" element={<EditBlog />} /> */}
+          <Route path="/create" element={<CreateBlog />} />
+          <Route path="/edit/:id" element={<EditBlog />} />
         </Routes>
       </div>
     </Router>
