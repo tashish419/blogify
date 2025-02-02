@@ -18,7 +18,7 @@
 
 # Installation
  - Clone the repository:
-   - git clone https://github.com/tashish419/first-shopper
+   - git clone https://github.com/tashish419/blogify
    - cd blog-app
  
  - Install dependencies:
