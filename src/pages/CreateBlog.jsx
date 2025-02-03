@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ReactQuill from "react-quill";
 import { addBlog } from "../store/blogSlice";
@@ -12,15 +12,16 @@ const CreateBlog = () => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [coverImage, setCoverImage] = useState(null);
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) return;
+    setIsLoading(true);
 
     try {
       let coverImageUrl = "";
@@ -48,29 +49,54 @@ const CreateBlog = () => {
     } catch (error) {
       console.error("Error creating post: ", error);
       setError("Failed to create post. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
     <div className="create-blog">
       <h2>Create New Blog Post</h2>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Blog Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Blog Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <ReactQuill value={content} onChange={setContent} />
-        <input type="file" onChange={(e) => setCoverImage(e.target.files?.[0] || null)} />
-        <button type="submit">Create Post</button>
+      <form onSubmit={handleSubmit} className="create-blog-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            placeholder="Blog Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="create-blog-title-input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea
+            placeholder="Blog Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className="create-blog-description-input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="content">Content</label>
+          <ReactQuill value={content} onChange={setContent} className="create-blog-content-input"/>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="coverImage">Cover Image</label>
+          <input
+            id="coverImage"
+            type="file"
+            onChange={(e) => setCoverImage(e.target.files?.[0] || null)}
+            className="create-blog-file-input"
+          />
+        </div>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit" disabled={isLoading} className="create-blog-submit">
+          {isLoading ? "Creating..." : "Create Post"}
+        </button>
+        
       </form>
     </div>
   );

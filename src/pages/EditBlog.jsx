@@ -14,6 +14,7 @@ const EditBlog = () => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentCoverImageUrl, setCurrentCoverImageUrl] = useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const EditBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user || !id) return;
+    setIsLoading(true);
 
     try {
       let coverImageUrl = currentCoverImageUrl;
@@ -71,41 +73,70 @@ const EditBlog = () => {
     } catch (error) {
       console.error("Error updating post: ", error);
       setError("Failed to update post. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="edit-blog">
       <h2>Edit Blog Post</h2>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <ReactQuill value={content} onChange={setContent} />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setCoverImage(e.target.files?.[0] || null)}
-        />
-        {currentCoverImageUrl && (
-          <img
-            src={currentCoverImageUrl || "/placeholder.svg"}
-            alt="Current cover"
-            className="current-cover"
+      <form onSubmit={handleSubmit} className="edit-blog-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            id="title"
+            type="text"
+            placeholder="Blog Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="edit-blog-title-input"
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            placeholder="Blog Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className="edit-blog-description-input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="content">Content</label>
+          <ReactQuill
+            value={content}
+            onChange={setContent}
+            className="edit-blog-content-input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="coverImage">Cover Image</label>
+          <input
+            id="coverImage"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setCoverImage(e.target.files?.[0] || null)}
+            className="edit-blog-file-input"
+          />
+        </div>
+        {currentCoverImageUrl && (
+          <div className="form-group">
+            <label>Current Cover Image</label>
+            <img
+              src={currentCoverImageUrl || "/placeholder.svg"}
+              alt="Current cover"
+              className="current-cover"
+            />
+          </div>
         )}
-        <button type="submit">Update Post</button>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit" disabled={isLoading} className="edit-blog-submit">
+          {isLoading ? "Updating..." : "Update Post"}
+        </button>
       </form>
     </div>
   );

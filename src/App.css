@@ -188,44 +188,6 @@ body {
   text-decoration: underline;
 }
 
-/* Create/Edit Blog Styles */
-.create-blog,
-.edit-blog {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.create-blog h2,
-.edit-blog h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.create-blog input,
-.create-blog textarea,
-.edit-blog input,
-.edit-blog textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.create-blog button,
-.edit-blog button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.current-cover {
-  max-width: 100%;
-  margin-bottom: 10px;
-}
-
 /* Blog Post Styles */
 .blog-post {
   max-width: 800px;
@@ -236,3 +198,129 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
+
+/* Create/Edit Blog Styles */
+.create-blog,
+.edit-blog {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.create-blog h2,
+.edit-blog h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.create-blog-form,
+.edit-blog-form {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.create-blog-title-input,
+.create-blog-description-input,
+.create-blog-file-input,
+.edit-blog-title-input,
+.edit-blog-description-input,
+.edit-blog-file-input {
+  width: 98%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.create-blog-description-input,
+.edit-blog-description-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.create-blog-content-input,
+.edit-blog-content-input {
+  margin-bottom: 20px;
+}
+
+.create-blog-content-input .ql-container,
+.edit-blog-content-input .ql-container {
+  min-height: 200px;
+  font-size: 16px;
+}
+
+.create-blog-file-input,
+.edit-blog-file-input {
+  border: none;
+  padding: 10px 0;
+}
+
+.current-cover {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-bottom: 10px;
+}
+
+.create-blog-submit,
+.edit-blog-submit {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-blog-submit:hover,
+.edit-blog-submit:hover {
+  background-color: #0056b3;
+}
+
+.create-blog-submit:disabled,
+.edit-blog-submit:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .create-blog,
+  .edit-blog {
+    padding: 10px;
+  }
+
+  .create-blog-form,
+  .edit-blog-form {
+    padding: 15px;
+  }
+
+  .create-blog-content-input .ql-container,
+  .edit-blog-content-input .ql-container {
+    min-height: 150px;
+  }
+}
+
