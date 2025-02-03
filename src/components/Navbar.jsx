@@ -22,7 +22,7 @@ const Navbar = () => {
         {user ? (
           <>
             <Link to="/create" className="navbar-link">Create Blog</Link>
-            <button onClick={handleLogout} className="navbar-link">Logout</button>
+            <Link to="/" onClick={handleLogout} className="navbar-link">Log Out</Link>
           </>
         ) : (
           <>
