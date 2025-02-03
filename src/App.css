@@ -137,10 +137,27 @@ body {
 }
 
 /* Home Page Styles */
-.home h1 {
+.home {
+  padding: 2rem 0;
+}
+
+.home-header {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--secondary-color);
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: var(--secondary-color);
+  color: var(--light-text-color);
+  border-radius: 8px;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-header p {
+  font-size: 1.2rem;
+  opacity: 0.8;
 }
 
 .blog-list {
@@ -154,15 +171,12 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blog-preview:hover {
   transform: translateY(-5px);
-}
-
-.blog-preview-content {
-  padding: 1.5rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .blog-cover {
@@ -171,21 +185,73 @@ body {
   object-fit: cover;
 }
 
+.blog-preview-content {
+  padding: 1.5rem;
+}
+
 .blog-preview h2 {
   margin-top: 0;
+  margin-bottom: 0.5rem;
   color: var(--secondary-color);
+  font-size: 1.5rem;
+}
+
+.blog-preview p {
+  color: var(--text-color);
+  margin-bottom: 1rem;
 }
 
 .read-more {
   display: inline-block;
-  margin-top: 1rem;
-  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
   text-decoration: none;
+  border-radius: 4px;
   font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .read-more:hover {
-  text-decoration: underline;
+  background-color: #2980b9;
+}
+
+.no-posts {
+  text-align: center;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.no-posts svg {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.no-posts h2 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.no-posts p {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.create-post-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.create-post-button:hover {
+  background-color: #2980b9;
 }
 
 /* Blog Post Styles */
@@ -262,6 +328,7 @@ body {
 .edit-blog-content-input .ql-container {
   min-height: 200px;
   font-size: 16px;
+  background-color: #fff;
 }
 
 .create-blog-file-input,
